@@ -14,7 +14,6 @@ public class JocDeRol {
 
         System.out.println("Vaig a crear un Alien");
         Alien alien = new Alien();
-
     }
 
     public static void provaFaseV2(){
@@ -32,6 +31,6 @@ public class JocDeRol {
 class main{
     static void main(String[] args) {
         JocDeRol.provaFaseV1();
-
+        JocDeRol.provaFaseV2();
     }
 }
