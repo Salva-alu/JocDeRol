@@ -36,45 +36,25 @@ public abstract class Player {
 
     public void attack(Player p){
         // en main per a invocar seria this.attack(p);
+        System.out.println("Atacant: " + this.toString());
+        System.out.println("Atacat: " + p.toString());
+
         p.hit(this.attackPoints);
         if (p.life > 0){
-            p.attack(this);
+            p.hit(p.attackPoints);
         }
+
+        System.out.println("Atacant: " + this.toString());
+        System.out.println("Atacat: " + p.toString() + "\n");
     }
 
     protected void hit(int attackPoints){
+        int dany = attackPoints - this.defensePoints;
+        if (dany < 0) dany = 0;
+        int videsAnteriors = this.life - dany;
 
+        if (this.life < 0) this.life = 0;
 
-        //abans del atac
-        System.out.println("Atacant: " /* + toString()*/);
-        System.out.println("Atacat: " + this.toString());
-
-        //atac
-
-
-        //despres del atac
-        System.out.println("Atacant: " /* + .toString() */ );
-        System.out.println("Atacat: " + this.toString());
-
-
+        System.out.println(this.name + " es colpejat amb " + attackPoints + " punts i es defen amb " + this.defensePoints + ". Punts de vida: " + life + " - " + videsAnteriors + " = " + (videsAnteriors-life));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
