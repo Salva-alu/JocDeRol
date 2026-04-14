@@ -28,6 +28,18 @@ public abstract class Player {
         return life;
     }
 
+    public void setAttackPoints(int attackPoints) {
+        this.attackPoints = attackPoints;
+    }
+
+    public void setDefensePoints(int defensePoints) {
+        this.defensePoints = defensePoints;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
     //metodos
     @Override
     public String toString(){
@@ -41,7 +53,7 @@ public abstract class Player {
 
         p.hit(this.attackPoints);
         if (p.life > 0){
-            p.hit(p.attackPoints);
+            this.hit(p.attackPoints);
         }
 
         System.out.println("Atacant: " + this.toString());
@@ -55,6 +67,11 @@ public abstract class Player {
 
         if (this.life < 0) this.life = 0;
 
-        System.out.println(this.name + " es colpejat amb " + attackPoints + " punts i es defen amb " + this.defensePoints + ". Punts de vida: " + life + " - " + videsAnteriors + " = " + (videsAnteriors-life));
+        int vidaActual = videsAnteriors - this.life;
+        if (vidaActual < 0) vidaActual = 0;
+
+        System.out.println(this.name + " es colpejat amb " + attackPoints + " punts i es defen amb " + this.defensePoints + ". Punts de vida: " + life + " - " + videsAnteriors + " = " + vidaActual);
+
+        this.life -= dany;
     }
 }
