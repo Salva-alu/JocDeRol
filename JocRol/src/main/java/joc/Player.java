@@ -1,10 +1,13 @@
 package joc;
 
+import java.util.ArrayList;
+
 public abstract class Player {
     private String name;
     private int attackPoints;
     private int defensePoints;
     private int life;
+    private ArrayList<Team> equips = new ArrayList<>();
 
     //constructors
     public Player(String name, int attackPoints, int defensePoints, int life) {
@@ -43,7 +46,22 @@ public abstract class Player {
     //metodos
     @Override
     public String toString(){
-        return name + " PA:" + attackPoints + " / PD:" + defensePoints + " / PV:" + life;
+        String res = name + " PA:" + attackPoints + " / PD:" + defensePoints + " / PV:" + life + "(pertany a " + this.equips.size();
+        if (this.equips.size() > 1){
+            res += " equips)";
+        }
+        else {
+            res += " equip)";
+        }
+        return res;
+    }
+
+    public boolean equals(Player altre){ //compare jugador, no objecte
+        if (this == altre) return true;
+        return this.name.equals(altre.name) &&
+                this.attackPoints == altre.attackPoints &&
+                this.defensePoints == altre.defensePoints &&
+                this.life == altre.life;
     }
 
     public void attack(Player p){
@@ -74,4 +92,29 @@ public abstract class Player {
 
         this.life -= dany;
     }
+
+    public void afegirEquip(Team equip){
+        if (!equips.contains(equip)){
+            equips.add(equip);
+            equip.afegirJugador(this);
+        }
+    }
+
+    public void llevarEquip(Team equip){
+        if (equips.contains(equip)){
+            equips.remove(equip);
+            equip.eliminarJugador(this);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
